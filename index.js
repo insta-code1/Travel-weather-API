@@ -1,22 +1,17 @@
 const request = require('request');
 const appid = require('./weather_api_key');
+const fetchGeoLocation = require('./geolocation');
 
-request({ 
-  url: 'https://maps.googleapis.com/maps/api/geocode/json?address=dublin+ireland',
-  json: true
-}, (error, response, body) => {
 
-  if (error) {
-    console.log('Error while fetching data');
-  } else if (body.status === "ZERO_RESULTS") {
-    console.log('Unable to find address');
-  } else if (body.status === "OK") {
-    let latitude = body.results[0].geometry.location.lat;
-    let longitude = body.results[0].geometry.location.lng;
-    console.log(`longitude: ${longitude} and latitude: ${latitude}`);
-   fetchWeatherData(latitude, longitude);
+fetchGeoLocation('dublin ireland', (err, res) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(res.latitude, res.longitude);
+    fetchWeatherData(res.latitude, res.longitude);
   }
 });
+
 
 let fetchWeatherData = (lat, log) => {
 
