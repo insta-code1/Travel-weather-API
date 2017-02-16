@@ -10,6 +10,7 @@ $('#searchButton').on('click', function(e) {
    url: "/api/weatherdata/",
    data: location,
    success: function(data) {
+     $('#toggle').removeClass('hidden');
      console.log(JSON.stringify(data));
    },
    error: function() {
