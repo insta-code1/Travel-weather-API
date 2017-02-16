@@ -1,4 +1,7 @@
-const request = require('request');
+const express = require('express');
+const router = express.Router();
+
+
 const fetchGeoLocation = require('./modules/geolocation');
 const fetchWeatherData = require('./modules/weatherdata');
 
@@ -19,3 +22,4 @@ fetchGeoLocation('dublin ireland', (err, res) => {
 });
 
 
+module.exports = router;
