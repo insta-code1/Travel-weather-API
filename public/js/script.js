@@ -7,13 +7,13 @@ $('#searchButton').on('click', function(e) {
 
  $.ajax({
    type: "POST",
-   url: "/api/weatherdata",
+   url: "/api/weatherdata/",
    data: location,
-   success: function() {
-     alert(location);
+   success: function(data) {
+     console.log(JSON.stringify(data));
    },
    error: function() {
-     alret('error');
+     alert('error');
    }
 
  }); // $.ajax call
