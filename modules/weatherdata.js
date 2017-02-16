@@ -1,4 +1,5 @@
 const request = require('request');
+const appid = require('../weather_api_key');
 
 let fetchWeatherData = (lat, log, callback) => {
 
