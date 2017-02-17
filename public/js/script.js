@@ -42,7 +42,14 @@ $('#searchButton').on('click', function(e) {
         "Latitude": latitude
       };
 
+      $('#table').html("");
 
+      $.each(myObject, function(key, val) {
+        console.log(`Key:${key}, val:${val}`);
+        var tableRow = `<tr><td>${key}</td><td>${val}</td></tr>`;
+
+        $('#table').append(tableRow);
+      });
 
 
 
@@ -53,11 +60,6 @@ $('#searchButton').on('click', function(e) {
 
         $('#toggle').removeClass('hidden');
       console.log(JSON.stringify(serverData, undefined, 2));
-
-      document.querySelector('#wind').innerHTML = wind;
-      document.querySelector('#clouds').innerHTML = clouds;
-      document.querySelector('#temp').innerHTML = temp;
-
 
 
     } else if (serverData.error === 1) {
