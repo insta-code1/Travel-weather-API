@@ -13,13 +13,7 @@ let fetchWeatherData = (lat, log, callback) => {
     } else if (body.weather == null) {
       callback('unable to find weather data for this address');
     } else if (response.statusCode == 200 && body.weather) {
-      
-      let weatherDataObj = {
-        description: body.weather[0].description,
-        temp: body.main.temp,
-        windSpeed: body.wind.speed
-      };
-      callback(undefined, weatherDataObj);
+      callback(undefined, body);
     }
   });
 }

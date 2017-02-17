@@ -19,16 +19,52 @@ $('#searchButton').on('click', function(e) {
 
 
   function success(serverData) {
-      $('#toggle').removeClass('hidden');
-    console.log(JSON.stringify(serverData));
 
-    var wind = serverData.data.windSpeed;
-    var clouds = serverData.data.description;
-    var temp = serverData.data.temp;
+    if (serverData.error === 0) {
 
-    document.querySelector('#wind').innerHTML = wind;
-    document.querySelector('#clouds').innerHTML = clouds;
-    document.querySelector('#temp').innerHTML = temp;
+      var weatherData = serverData.data;
+      var icon = weatherData.weather[0].icon;
+      var temp = weatherData.main.temp;
+      var description = weatherData.weather[0].description;
+      var windSpeed = weatherData.wind.speed;
+      var windDir = weatherData.wind.deg;
+      var pressure = weatherData.main.pressure;
+      var longitude = weatherData.coord.lon;
+      var latitude = weatherData.coord.lat;
+
+      var myObject = {
+        "Temperature": temp,
+        "Description": description,
+        "Wind Speed": windSpeed,
+        "Wind Direction": windDir,
+        "Pressure": pressure,
+        "Longitude": longitude,
+        "Latitude": latitude
+      };
+
+
+
+
+
+
+
+
+
+
+        $('#toggle').removeClass('hidden');
+      console.log(JSON.stringify(serverData, undefined, 2));
+
+      document.querySelector('#wind').innerHTML = wind;
+      document.querySelector('#clouds').innerHTML = clouds;
+      document.querySelector('#temp').innerHTML = temp;
+
+
+
+    } else if (serverData.error === 1) {
+      //handle the error
+    }
+
+
 
   }
 
