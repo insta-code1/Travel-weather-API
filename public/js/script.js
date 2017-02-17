@@ -13,9 +13,26 @@ $('#searchButton').on('click', function(e) {
      success(data);
    },
    error: function() {
-     alert('error');
+     var msg = "Unable to connect to the internet";
+     errorHandler(msg);
    }
   }); // $.ajax call
+
+
+  function refreshTemplate() {
+    $("#table").html("");
+    $("#errorHandler").html("");
+  }
+
+
+  function errorHandler(error) {
+    refreshTemplate();
+    errTemplate = `
+      <div class="alert alert-danger" role="alert">
+        <strong>Oh Snap!</strong> ${error}
+      </div> `;
+      $('#errorHandler').append(errTemplate);
+  }
 
 
   function success(serverData) {
@@ -53,19 +70,8 @@ $('#searchButton').on('click', function(e) {
 
         $('#table').append(tableRow);
       });
-
-
-      console.log(JSON.stringify(serverData, undefined, 2));
-
-
     } else if (serverData.error === 1) {
-      //handle the error
+      errorHandler(serverData.message);
     }
-
-
-
   }
-
-
-
 }); // close button event
