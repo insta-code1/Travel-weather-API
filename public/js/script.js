@@ -26,6 +26,7 @@ $('#searchButton').on('click', function(e) {
 
 
   function errorHandler(error) {
+    $('#toggle').addClass('hidden');
     refreshTemplate();
     errTemplate = `
       <div class="alert alert-danger" role="alert">
@@ -36,6 +37,8 @@ $('#searchButton').on('click', function(e) {
 
 
   function success(serverData) {
+    refreshTemplate();
+
 
     if (serverData.error === 0) {
 
