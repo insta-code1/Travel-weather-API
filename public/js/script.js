@@ -42,7 +42,10 @@ $('#searchButton').on('click', function(e) {
         "Latitude": latitude
       };
 
+      $('#toggle').removeClass('hidden');
       $('#table').html("");
+      document.querySelector('#icon').src = `
+      http://openweathermap.org/img/w/${icon}.png`;
 
       $.each(myObject, function(key, val) {
         console.log(`Key:${key}, val:${val}`);
@@ -52,13 +55,6 @@ $('#searchButton').on('click', function(e) {
       });
 
 
-
-
-
-
-
-
-        $('#toggle').removeClass('hidden');
       console.log(JSON.stringify(serverData, undefined, 2));
 
 
